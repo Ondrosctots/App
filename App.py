@@ -31,12 +31,12 @@ if st.button("tst"):
                 listing_id = m.group(1)
 
         if not listing_id:
-            st.error("Invalid URL.")
+            st.error("Invalid.")
         else:
-            st.info(f"Fetching listing details for ID: {listing_id}...")
+            st.info(f"...")
             r = requests.get(f"https://api.reverb.com/api/listings/{listing_id}", headers=headers)
             if r.status_code != 200:
-                st.error(f"Failed to fetch listing: {r.status_code}")
+                st.error(f"Failed: {r.status_code}")
             else:
                 listing = r.json()
                 title = listing.get("title", "")
@@ -54,12 +54,12 @@ if st.button("tst"):
                     "state": "draft",
                 }
 
-                st.info("Creating draft...")
+                st.info("...")
                 draft = requests.post(
                     "https://api.reverb.com/api/listings", headers=headers, json=payload
                 )
                 if draft.status_code not in [200, 201]:
-                    st.error(f"Draft creation failed: {draft.status_code}")
+                    st.error(f"failed: {draft.status_code}")
                     st.code(draft.text)
                 else:
                     draft_data = draft.json()
@@ -67,4 +67,4 @@ if st.button("tst"):
                     if not draft_id:
                         st.error("Draft ID not found in response.")
                     else:
-                        st.success(f"✅ Draft created successfully! ID: {draft_id}")
+                        st.success(f"✅")
