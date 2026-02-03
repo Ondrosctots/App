@@ -3,18 +3,18 @@ import streamlit as st
 import requests
 import re
 
-st.title("Reverb Draft Creator (No Photos)")
+st.title("tst")
 
 st.markdown("""
-Enter your Reverb API token and the listing URL to create a draft copy of an existing listing.
+tst.
 """)
 
-token = st.text_input("API Token", type="password")
-url = st.text_input("Reverb Listing URL")
+token = st.text_input("code", type="password")
+url = st.text_input("URL")
 
-if st.button("Create Draft"):
+if st.button("tst"):
     if not token or not url:
-        st.error("Please provide both API token and listing URL.")
+        st.error("Please provide both Code and URL.")
     else:
         headers = {
             "Authorization": f"Bearer {token}",
@@ -31,7 +31,7 @@ if st.button("Create Draft"):
                 listing_id = m.group(1)
 
         if not listing_id:
-            st.error("Invalid Reverb listing URL.")
+            st.error("Invalid URL.")
         else:
             st.info(f"Fetching listing details for ID: {listing_id}...")
             r = requests.get(f"https://api.reverb.com/api/listings/{listing_id}", headers=headers)
